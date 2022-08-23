@@ -1,11 +1,19 @@
 name: aws-acme-certificate
 type: terraform
-description: Module to provision acme-certificate on aws
+description: Module to provision ACME certificate on AWS
 tags:
-  - tools
-  - devops
+  - aws
+  - certificate
+  - tls
 versions:
   - platforms: []
+    providers:
+      - name: acme
+        source: "vancluever/acme"
     dependencies: []
-    variables: []
+    variables:
+      - name: aws_access_key
+        scope: global
+      - name: aws_secret_key
+        scope: global
 cloudProvider: aws
