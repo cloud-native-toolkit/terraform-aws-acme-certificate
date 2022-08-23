@@ -11,5 +11,9 @@ versions:
       - name: acme
         source: "vancluever/acme"
     dependencies: []
-    variables: []
+    variables:
+      - name: access_key
+        scope: global
+      - name: secret_key
+        scope: global
 cloudProvider: aws
