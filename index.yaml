@@ -1,9 +1,56 @@
 name: aws-acme-certificate
 type: terraform
-description: Module to provision acme-certificate on aws
+description: Module to provision ACME certificate on AWS
 tags:
-  - tools
-  - devops
-versions: []
+  - aws
+  - certificate
+  - tls
+versions:
+  - platforms: []
+    providers:
+      - name: acme
+        source: vancluever/acme
+    dependencies: []
+    variables:
+      - name: acme_registration_email
+        type: string
+        description: Email address used to register with letsencrypt
+      - name: domain
+        type: string
+        description: Domain for this certificate e.g. apps.cluster.example.com
+      - name: aws_access_key
+        description: AWS account access key
+        type: string
+        scope: global
+      - name: aws_secret_key
+        description: AWS account secret key
+        type: string
+        scope: global
+      - name: acme_api_endpoint
+        description: ACME API endpoint, defaults to letsencrypt prod directory.
+        type: string
+        default: https://acme-v02.api.letsencrypt.org/directory
+      - name: staging_api_endpoint
+        description: Staging Acme API endpoint (used for testing)
+        type: string
+        default: https://acme-staging-v02.api.letsencrypt.org/directory
+      - name: testing
+        description: >-
+          Flag to be set if testing and to use staging certificates (default =
+          false)
+        type: bool
+        default: false
+      - name: wildcard_domain
+        type: bool
+        description: >-
+          Specify wether wildcard subdomain should be supported e.g.
+          *.apps.cluster.example.com
+        default: false
+    version: v1.0.0
+    outputs:
+      - name: cert
+      - name: key
+        sensitive: true
+      - name: issuer_ca
 cloudProvider: aws
 id: github.com/cloud-native-toolkit/terraform-aws-acme-certificate
