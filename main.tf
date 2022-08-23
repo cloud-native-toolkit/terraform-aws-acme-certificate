@@ -1,5 +1,5 @@
 provider "acme" {
-  server_url = var.acme_api_endpoint
+  server_url = var.testing ? var.staging_api_endpoint : var.acme_api_endpoint
 }
 
 resource "tls_private_key" "private_key" {
