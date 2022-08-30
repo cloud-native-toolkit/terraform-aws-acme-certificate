@@ -20,6 +20,12 @@ variable "aws_secret_key" {
 
 // Following variables have default values
 
+variable "create_certificate" {
+  description = "Flag to create the certificate. Useful with BYO certificate workflows. (default = true)"
+  type        = bool
+  default     = true
+}
+
 variable "acme_api_endpoint" {
   description = "ACME API endpoint, defaults to letsencrypt prod directory."
   type        = string
