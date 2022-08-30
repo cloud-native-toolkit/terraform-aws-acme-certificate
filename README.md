@@ -47,6 +47,8 @@ module "acme-cert-apps" {
 
 ## Variables
 
+### Inputs
+
 This module has the following input variables:
 | Variable | Mandatory / Optional | Default Value | Description |
 | -------------------------------- | --------------| ------------------ | ----------------------------------------------------------------------------- |
@@ -56,5 +58,15 @@ This module has the following input variables:
 | aws_access_key | Mandatory | "" | AWS access key to validate the DNS |
 | aws_secret_key | Mandatory | "" | AWS secret key to validate the DNS |
 | testing | Optional | false | Flag to set which of the API endpoints to be used to generate the certificate. Set true to use the staging endpoint. Refer to https://letsencrypt.org/docs/staging-environment/ for details on certificate quotas of each endpoint |
+| create_certificate | Optional | true | Flag to create a certificate or not. Used with BYO certificate workflows. |
 | acme_api_endpoint | Optional | "https://acme-v02.api.letsencrypt.org/directory" | ACME production API Endpoint |
 | staging_api_endpoint | Optional | "https://acme-staging-v02.api.letsencrypt.org/directory" | ACME staging API Endpoint |
+
+### Outputs
+
+This module outputs the following values:
+| Value | Description |
+| -------------------------------- | ----------------------------------------------------------------------------- |
+| cert | The created certificate |
+| key | The private key for the certificate (sensitive) |
+| issuer_ca | Certificate authority bundle for the certificate |
