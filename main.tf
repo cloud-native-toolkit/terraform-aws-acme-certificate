@@ -23,6 +23,8 @@ resource "acme_certificate" "certificate" {
   common_name               = var.domain
   subject_alternative_names = var.wildcard_domain ? ["*.${var.domain}"] : []
 
+  recursive_nameservers = ["8.8.8.8:53"]
+
   dns_challenge {
     provider = "route53"
 
